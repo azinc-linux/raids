@@ -17,13 +17,17 @@ Cэмулировал выход из строя одного из дисков 
 	parted  /dev/md0 primary ext4 40% 60%
 	parted  /dev/md0 primary ext4 60% 80%
 	parted  /dev/md0 primary ext4 80% 100%
+	
 промаркировал раздел как gpt (guid partition table) и нарезал пять primary секций  равного размера
+
 	mkfs.ext4 /dev/md0/md0p1
 	mkfs.ext4 /dev/md0/md0p2
 	mkfs.ext4 /dev/md0/md0p3
 	mkfs.ext4 /dev/md0/md0p4
 	mkfs.ext4 /dev/md0/md0p5
+
 в каждой секции создал файловую систему ext4
+
     mkdir /raid/part1
 	mkdir /raid/part2
 	mkdir /raid/part3
@@ -34,7 +38,10 @@ Cэмулировал выход из строя одного из дисков 
 	mount /dev/md0/md0p3 /raid/part3
 	mount /dev/md0/md0p4 /raid/part4
 	mount /dev/md0/md0p5 /raid/part5
+	
 создал пять директорий точек монтирования и смонтировал секции раздела.
+
+
 	[root@otuslinux vagrant]# df -h
 	Filesystem      Size  Used Avail Use% Mounted on
 	/dev/sda1        40G  4.4G   36G  11% /
